@@ -3,15 +3,20 @@ require 'rake'
 
 begin
   require 'jeweler'
+
   Jeweler::Tasks.new do |gem|
     gem.name = "usps"
-    gem.summary = %Q{TODO: one-line summary of your gem}
+    gem.summary = "USPS Webtools API for Ruby"
     gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "cgaffney@crayoninterface.com"
+    gem.email = "gaffneyc@gmail.com"
     gem.homepage = "http://github.com/gaffneyc/usps"
     gem.authors = ["Chris Gaffney"]
-    gem.add_development_dependency "rspec", ">= 1.2.9"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+
+    gem.add_dependency 'builder',  '>= 2.1.2'
+    gem.add_dependency 'nokogiri', '>= 1.4.1'
+
+    gem.add_development_dependency "mocha", ">= 0.9.8"
+    gem.add_development_dependency "rspec", ">= 1.3.0"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

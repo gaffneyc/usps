@@ -1,7 +1,8 @@
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+require 'spec_helper'
 
-describe "Usps" do
-  it "fails" do
-    fail "hey buddy, you should probably rename this file and start specing for real"
+describe USPS do
+  it "should allow setting the USPS API username" do
+    USPS.username = 'melvin'
+    USPS.username.should == 'melvin'
   end
 end
