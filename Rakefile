@@ -7,7 +7,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "usps"
     gem.summary = "USPS Webtools API for Ruby"
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.description = "USPS Webtools API for Ruby."
     gem.email = "gaffneyc@gmail.com"
     gem.homepage = "http://github.com/gaffneyc/usps"
     gem.authors = ["Chris Gaffney"]
