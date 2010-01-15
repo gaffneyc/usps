@@ -9,7 +9,7 @@ describe USPS::Request::DeliveryConfirmation do
     end
   end
 
-  xit 'should conform to test request 1' do
+  it 'should conform to test request 1' do
     to = USPS::Address.new(
       :name => 'Joe Customer',
       :address => '6060 PRIMACY PKWY',
@@ -52,5 +52,6 @@ describe USPS::Request::DeliveryConfirmation do
 
     xml.search('WeightInOunces').text.should == '2'
     xml.search('ImageType').text.should == 'TIF'
+    xml.search('ServiceType').text.should == 'Priority'
   end
 end

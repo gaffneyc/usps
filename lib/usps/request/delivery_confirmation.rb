@@ -1,4 +1,3 @@
-# TODO: Add support for the optional tags
 module USPS::Request
   class DeliveryConfirmation < Base
     config(
@@ -8,7 +7,7 @@ module USPS::Request
       :response => USPS::Response::DeliveryConfirmation
     )
 
-    attr_reader :to, :from, :weight, :options
+    attr_reader :to, :from, :weight, :options, :format
 
     DEFAULTS = {
       :type    => 1,
@@ -23,14 +22,15 @@ module USPS::Request
       :po_zip_code        => 'PoZipCode',
       :label_date         => 'LabelDate',
       :customer_reference => 'CustomerRefNo',
-      :format             => lambda {|b,v| b.tag!('ImageType', v.to_s.upcase)},
-      :separate_receipt   => lambda {|b,v| b.tag!('SeparateReceiptPage', v.to_s.upcase)},
-      :address_service    => lambda {|b,v| b.tag!('AddressServiceRequested', v.to_s.upcase)},
+      :separate_receipt   => 'SeparateReceiptPage',
+      :address_service    => 'AddressServiceRequested',
       :sender_name        => 'SenderName',
       :sender_email       => 'SenderEMail',
       :recipient_name     => 'RecipientName',
       :recipient_email    => 'RecipientEMail'
     }.freeze
+
+    FORMATS = %w(TIF PDF).freeze
 
     # === Options:
     # * <tt>:
@@ -39,11 +39,24 @@ module USPS::Request
       @from = from
       @weight = weight
       @options = DEFAULTS.merge(options)
+
+      @type = @options.delete(:type)
+      self.format = @options.delete(:format)
+    end
+
+    def format=(format)
+      format = format.upcase
+
+      unless(FORMATS.include?(format))
+        raise ArgumentError, "Format must be one of #{FORMATS.join(',')}"
+      end
+
+      @format = format.upcase
     end
 
     def build
       super do |builder|
-        builder.tag!('Option', '1')
+        builder.tag!('Option', @type)
         builder.tag!('ImageParameters')
 
         [
@@ -61,8 +74,14 @@ module USPS::Request
         end
 
         builder.tag!('WeightInOunces', self.weight)
-        builder.tag!('ServiceType', self.service)
-        builder.tag!('ImageType', 'TIF')
+
+        @options.each_pair do |k,v|
+          OPTIONS[k].tap do |tag|
+            builder.tag!(tag, v.to_s) if tag
+          end
+        end
+
+        builder.tag!('ImageType', @format)
       end
     end
   end

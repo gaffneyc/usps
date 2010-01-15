@@ -5,7 +5,8 @@ module USPS::Response
     alias :confirmation_number :confirmation
 
     def initialize(xml)
-      @label = xml.search('DeliveryConfirmationLabel').text
+      # Label is Base64 encoded
+      @label = xml.search('DeliveryConfirmationLabel').text.unpack("m*")[0]
       @confirmation = xml.search('DeliveryConfirmationNumber').text
       @postnet = xml.search('Postnet').text
 
