@@ -1,6 +1,45 @@
 = usps
 
-Description goes here.
+Ruby API for accessing the USPS WebTools API found here: http://www.usps.com/webtools/technical.htm
+
+Usage of this library assumes you already have a USPS API account and that all priviledges have been granted.
+
+== Exposed API Calls
+
+The following USPS API calls are currently exposed through this library:
+
+   <AddressValidateRequest>             -- USPS::Request::AddressStandardization
+   <CityStateLookupRequest>             -- USPS::Request::CityAndStateLookup
+   <ZipCodeLookupRequest>               -- USPS::Request::ZipCodeLookup
+   <TrackRequest>                       -- USPS::Request::TrackingLookup
+
+   <DeliveryConfirmationV3.0Request>    -- USPS::Request::DeliveryConfirmation        (for production)
+   <DeliveryConfirmCertifyV3.0Request>  -- USPS::Request::DeliveryConfirmationCertify (for testing)
+
+== How to use?
+
+Using the library is as simple as building a new USPS::Request::[type] object, calling #send! and using the response.
+For example, to send a tracking request you'd do the following:
+
+  request = USPS::Request::TrackingLookup.new(tracking_number)
+  response = request.send!
+
+  response.summary
+  response.details
+
+The library assumes that either ENV['USPS_USER'] is set, or that you set USPS.username to your USPS API username.
+
+See the individual USPS::Request classes for details on how to use them.
+
+== USPS API Certification
+
+Part of the process of setting up an account with the USPS API is to run certain tests against the USPS API.
+This library has all the requisite tests built in, runnable with a simple
+  
+  rake certify
+
+If any of the tests fail, you don't have access to that API and may need to work with USPS to fix.
+
 
 == Note on Patches/Pull Requests
  
@@ -12,12 +51,6 @@ Description goes here.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-== TODO
-* Update README
-* Documentation and examples
-* Give a better interface for doing shipments
-* Expand the API to support more of the webtools API
-* Improve specs
 
 == Copyright
 
