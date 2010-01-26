@@ -8,4 +8,6 @@ module USPS::Request
   # DeliveryConfirmationCertify and SignatureConfirmationCertify should be used for testing
   autoload :DeliveryConfirmation, 'usps/request/delivery_confirmation'
   autoload :DeliveryConfirmationCertify, 'usps/request/delivery_confirmation_certify'
+
+  autoload :TrackingLookup, 'usps/request/tracking_lookup'
 end

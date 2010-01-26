@@ -12,6 +12,7 @@ module USPS
     require 'usps/test/zip_code_lookup'
     require 'usps/test/address_verification'
     require 'usps/test/city_and_state_lookup'
+    require 'usps/test/tracking_lookup'
 
     #
     if(ENV['USPS_USER'])
@@ -26,5 +27,6 @@ module USPS
     include ZipCodeLookup
     include CityAndStateLookup
     include AddressVerification
+    include TrackingLookup
   end
 end
