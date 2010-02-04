@@ -14,13 +14,17 @@ module USPS
     require 'usps/test/city_and_state_lookup'
     require 'usps/test/tracking_lookup'
 
-    #
-    if(USPS.config.username.nil?)
+    if(ENV['USPS_USER'].nil?)
       raise 'USPS_USER must be set in the environment to run these tests'
     end
 
-    # Set USPS_LIVE to anything to run against production
-    USPS.testing = true unless ENV['USPS_LIVE']
+    USPS.configure do |config|
+      # Being explicit even though it's set in the configuration by default
+      config.username = ENV['USPS_USER']
+
+      # Set USPS_LIVE to anything to run against production
+      config.testing  = true
+    end
 
     include ZipCodeLookup
     include CityAndStateLookup
