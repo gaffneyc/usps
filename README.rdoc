@@ -36,10 +36,9 @@ See the individual USPS::Request classes for details on how to use them.
 Part of the process of setting up an account with the USPS API is to run certain tests against the USPS API.
 This library has all the requisite tests built in, runnable with a simple
   
-  rake certify
+  USPS_USER="[username]" rake certify
 
 If any of the tests fail, you don't have access to that API and may need to work with USPS to fix.
-
 
 == Note on Patches/Pull Requests
  
