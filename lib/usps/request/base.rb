@@ -36,7 +36,7 @@ module USPS::Request
 
     def build(&block)
       builder = Builder::XmlMarkup.new(:indent => 0)
-      builder.tag!(self.class.tag, :USERID => USPS.username, &block)
+      builder.tag!(self.class.tag, :USERID => USPS.config.username, &block)
     end
   end
 end

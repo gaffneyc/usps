@@ -15,9 +15,7 @@ module USPS
     require 'usps/test/tracking_lookup'
 
     #
-    if(ENV['USPS_USER'])
-      USPS.username = ENV['USPS_USER']
-    else
+    if(USPS.config.username.nil?)
       raise 'USPS_USER must be set in the environment to run these tests'
     end
 

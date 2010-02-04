@@ -3,8 +3,6 @@ require 'net/https'
 
 module USPS
   class Client
-    attr_accessor :testing
-
     # TODO: Needs to handle timeouts
     def request(request, &block)
       port = request.secure? ? 443 : 80
@@ -18,7 +16,7 @@ module USPS
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       end
 
-      # TODO: Consider other http clients as net/http is slow
+      # TODO: Consider other http clients as net/http is considered slow
       # NOTE: The USPS also supports POST and may be a better alternative but
       #       during initial testing it appears to take twice as long per request
       #       and I am not sure if the slow down is on their end or ours.
@@ -45,16 +43,20 @@ module USPS
       request.response_for(xml)
     end
 
+    def testing?
+      USPS.config.testing
+    end
+
     private
     def path
-      @testing ? "ShippingAPITest.dll" : "ShippingAPI.dll"
+      testing? ? "ShippingAPITest.dll" : "ShippingAPI.dll"
     end
 
     def server(request)
       case
       when request.secure?
         "secure.shippingapis.com"
-      when @testing
+      when testing?
         "testing.shippingapis.com"
       else
         "production.shippingapis.com"
