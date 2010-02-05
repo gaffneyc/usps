@@ -72,7 +72,8 @@ Gem::Specification.new do |s|
      "spec/response/tracking_lookup_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
-     "spec/usps_spec.rb"
+     "spec/usps_spec.rb",
+     "usps.gemspec"
   ]
   s.homepage = %q{http://github.com/gaffneyc/usps}
   s.rdoc_options = ["--charset=UTF-8"]
