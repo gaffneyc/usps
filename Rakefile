@@ -14,6 +14,7 @@ begin
 
     gem.add_dependency 'builder',  '>= 2.1.2'
     gem.add_dependency 'nokogiri', '>= 1.4.1'
+    gem.add_dependency 'typhoeus', '>= 0.1.18'
 
     gem.add_development_dependency "mocha", ">= 0.9.8"
     gem.add_development_dependency "rspec", ">= 1.3.0"

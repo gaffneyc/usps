@@ -1,29 +1,21 @@
-require 'cgi'
-require 'net/https'
+require 'typhoeus'
 
 module USPS
   class Client
-    # TODO: Needs to handle timeouts
     def request(request, &block)
-      port = request.secure? ? 443 : 80
       server = server(request)
 
-      http = Net::HTTP.new(server, port)
-
-      # TODO: Consider verifying the USPS SSL certificate
-      if(request.secure?)
-        http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      end
-
-      # TODO: Consider other http clients as net/http is considered slow
-      # NOTE: The USPS also supports POST and may be a better alternative but
-      #       during initial testing it appears to take twice as long per request
-      #       and I am not sure if the slow down is on their end or ours.
-      response =
-        http.start do
-          http.get("/#{path}?API=#{request.api}&XML=#{CGI.escape(request.build)}")
-        end
+      # The USPS documentation shows all requests as being GET requests, but
+      # the servers also appear to support POST. We're using POST here so we
+      # don't need to escape the request and to keep from running into any
+      # concerns with data length.
+      response = Typhoeus::Request.post(server, {
+        :timeout => USPS.config.timeout,
+        :params => {
+          "API" => request.api,
+          "XML" => request.build
+        }
+      })
 
       # Parse the request
       xml = Nokogiri::XML.parse(response.body)
@@ -48,18 +40,16 @@ module USPS
     end
 
     private
-    def path
-      testing? ? "ShippingAPITest.dll" : "ShippingAPI.dll"
-    end
-
     def server(request)
+      dll = testing? ? "ShippingAPITest.dll" : "ShippingAPI.dll"
+
       case
       when request.secure?
-        "secure.shippingapis.com"
+        "https://secure.shippingapis.com/#{dll}"
       when testing?
-        "testing.shippingapis.com"
+        "http://testing.shippingapis.com/#{dll}"
       else
-        "production.shippingapis.com"
+        "http://production.shippingapis.com/#{dll}"
       end
     end
   end
