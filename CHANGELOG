@@ -1,0 +1,5 @@
+0.1.1 - 2011-02-18
+* Switch from POST to GET requests due to a change at the USPS.
+
+0.1.0 - 2010-02-05
+* Initial release
