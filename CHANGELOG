@@ -1,3 +1,6 @@
+0.1.2 - 2011-02-18
+* Allow certification using just the gem without checking out the code from github.
+
 0.1.1 - 2011-02-18
 * Switch from POST to GET requests due to a change at the USPS.
 
