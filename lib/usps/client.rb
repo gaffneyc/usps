@@ -5,11 +5,9 @@ module USPS
     def request(request, &block)
       server = server(request)
 
-      # The USPS documentation shows all requests as being GET requests, but
-      # the servers also appear to support POST. We're using POST here so we
-      # don't need to escape the request and to keep from running into any
-      # concerns with data length.
-      response = Typhoeus::Request.post(server, {
+      # Make the API request to the USPS servers. Used to support POST, now it's
+      # just GET request *grumble*.
+      response = Typhoeus::Request.get(server, {
         :timeout => USPS.config.timeout,
         :params => {
           "API" => request.api,
