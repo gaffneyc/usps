@@ -16,7 +16,7 @@ The following USPS API calls are currently exposed through this library:
    <DeliveryConfirmationV3.0Request>    -- USPS::Request::DeliveryConfirmation        (for production)
    <DeliveryConfirmCertifyV3.0Request>  -- USPS::Request::DeliveryConfirmationCertify (for testing)
 
-== How to use?
+== Usage
 
 Using the library is as simple as building a new USPS::Request::[type] object, calling #send! and using the response.
 For example, to send a tracking request you'd do the following:
@@ -34,11 +34,15 @@ See the individual USPS::Request classes for details on how to use them.
 == USPS API Certification
 
 Part of the process of setting up an account with the USPS API is to run certain tests against the USPS API.
-This library has all the requisite tests built in, runnable with a simple
+This library has all the requisite tests built in, runnable with rake:
   
   USPS_USER="[username]" rake certify
 
-If any of the tests fail, you don't have access to that API and may need to work with USPS to fix.
+or as an installed gem:
+
+  USPS_USER="[username]" ruby -rubygems -e "require 'usps/test'"
+
+If any of the tests fail, you don't have access to that API and may need to work with USPS to fix it.
 
 == Note on Patches/Pull Requests
  
@@ -53,4 +57,4 @@ If any of the tests fail, you don't have access to that API and may need to work
 
 == Copyright
 
-Copyright (c) 2010 Chris Gaffney. See LICENSE for details.
+Copyright (c) 2010, 2011 Chris Gaffney. See LICENSE for details.
