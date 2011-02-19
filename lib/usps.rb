@@ -8,6 +8,7 @@ module USPS
   autoload :Client,   'usps/client'
   autoload :Address,  'usps/address'
   autoload :Request,  'usps/request'
+  autoload :VERSION,  'usps/version'
   autoload :Response, 'usps/response'
 
   class << self

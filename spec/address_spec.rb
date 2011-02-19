@@ -48,7 +48,7 @@ describe USPS::Address do
       :zip => 20006
     )
 
-    USPS.client.expects(:request).returns(
+    USPS.client.should_receive(:request).and_return(
       USPS::Response::AddressStandardization.new(
         addy, load_xml('address_standardization_1.xml')
       )
@@ -58,7 +58,7 @@ describe USPS::Address do
 
     error = USPS::Error.new('error', '1234', 'source')
     # Failure
-    USPS.client.expects(:request).raises(error)
+    USPS.client.should_receive(:request).and_raise(error)
     addy.valid?.should be_false
     addy.error.should be(error)
   end
