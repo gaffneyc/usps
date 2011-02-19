@@ -4,6 +4,12 @@ Ruby API for accessing the USPS WebTools API found here: http://www.usps.com/web
 
 Usage of this library assumes you already have a USPS API account and that all priviledges have been granted.
 
+== Project Status - Looking for a Maintainer
+
+This code is no longer properly maintained as I'm no longer with the company it was developed for.
+If you're using it and would be interested in maintaining it please send me a message and I can
+get you set up.
+
 == Exposed API Calls
 
 The following USPS API calls are currently exposed through this library:
