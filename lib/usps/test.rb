@@ -1,5 +1,5 @@
+require 'usps'
 require 'test/unit'
-require 'rubygems'
 
 module USPS
   # This class is a test runner for the various test requests that are outlined
