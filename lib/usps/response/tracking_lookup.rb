@@ -14,6 +14,7 @@ module USPS::Response
         @details << detail.text
       end
     end
+ 
 
   end
 end

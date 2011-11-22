@@ -4,4 +4,5 @@ module USPS::Response
   autoload :DeliveryConfirmation,   'usps/response/delivery_confirmation'
   autoload :AddressStandardization, 'usps/response/address_standardization'
   autoload :TrackingLookup,         'usps/response/tracking_lookup'
+  autoload :TrackingFieldLookup,    'usps/response/tracking_field_lookup'
 end
