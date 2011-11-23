@@ -24,7 +24,12 @@ class USPS::TrackDetail < Struct.new(:event_time, :event_date, :event, :event_ci
   end
   
   def date
-    Time.parse("#{event_date} #{event_time}")
+    time = "#{event_date} #{event_time}".strip
+    begin
+      Time.parse(time) unless time.empty?
+    rescue ArgumentError
+      return nil
+    end
   end
 
   # Similar to Hash#replace, overwrite the values of this object with the other.

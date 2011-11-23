@@ -21,4 +21,8 @@ describe USPS::Response::TrackingFieldLookup do
     response.details[0].event.should == "ENROUTE"
     response.details[1].event.should == "ACCEPTANCE"
   end
+  it "should handle no detail records" do
+    response = USPS::Response::TrackingFieldLookup.new(load_xml("tracking_field_lookup_2.xml"))
+    response.details.length.should == 0  
+  end
 end

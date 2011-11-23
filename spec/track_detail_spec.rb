@@ -36,7 +36,16 @@ describe USPS::TrackDetail do
       :event_date => 'March 28, 2001',
     )
     track_detail.date.should == Time.parse('2001-03-28 21:24:00 -0500')
-
+  end
+  
+  it "should handle blank dates" do
+    track_detail = USPS::TrackDetail.new(
+      :event_time => '',
+      :event_date => '',
+    )
+    track_detail.event_time.should == ""
+    track_detail.event_date.should == ""
+    track_detail.date.should == nil
   end
 
 end

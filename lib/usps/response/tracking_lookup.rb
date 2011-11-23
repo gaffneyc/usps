@@ -15,6 +15,5 @@ module USPS::Response
       end
     end
  
-
   end
 end
