@@ -9,5 +9,6 @@ module USPS::Request
   autoload :DeliveryConfirmation, 'usps/request/delivery_confirmation'
   autoload :DeliveryConfirmationCertify, 'usps/request/delivery_confirmation_certify'
 
-  autoload :TrackingLookup, 'usps/request/tracking_lookup'
+  autoload :TrackingLookup,      'usps/request/tracking_lookup'
+  autoload :TrackingFieldLookup, 'usps/request/tracking_field_lookup'
 end

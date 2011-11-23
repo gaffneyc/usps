@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<TrackResponse>
+  <TrackInfo ID="01805213907042762274">
+    <TrackSummary>
+      <EventTime></EventTime>
+      <EventDate></EventDate>
+      <Event>DELIVERED</Event>
+      <EventCity>NEWTON</EventCity>
+      <EventState>IA</EventState>
+      <EventZIPCode>50208</EventZIPCode>
+      <EventCountry/>
+      <FirmName></FirmName>
+      <Name></Name>
+      <AuthorizedAgent></AuthorizedAgent>
+    </TrackSummary>
+  </TrackInfo>
+</TrackResponse>
