@@ -1,6 +1,8 @@
 = usps
 
-Ruby API for accessing the USPS WebTools API found here: http://www.usps.com/webtools/technical.htm
+Ruby API for accessing the USPS WebTools API found here: https://www.usps.com/business/webtools.htm
+
+PDF Guides can be found here: https://www.usps.com/business/webtools-technical-guides.htm
 
 Usage of this library assumes you already have a USPS API account and that all priviledges have been granted.
 
