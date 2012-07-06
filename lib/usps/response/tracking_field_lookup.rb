@@ -14,7 +14,7 @@ module USPS::Response
          @details << parse(detail)
        end
      end
-     
+
      private
      def parse(node)
        USPS::TrackDetail.new(
