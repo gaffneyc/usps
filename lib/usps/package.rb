@@ -1,7 +1,7 @@
 module USPS
 
   class Package < Struct.new(:id, :service, :origin_zip, :destination_zip, :pounds, :ounces, :container, :size,
-                             :width, :length, :height, :girth, :value, :amount_to_collect)
+                             :width, :length, :height, :girth, :value, :amount_to_collect, :first_class_mail_type)
 
     @@required_properties = %w{id service origin_zip destination_zip pounds ounces container size}
 

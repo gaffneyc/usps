@@ -20,12 +20,18 @@ module USPS::Request
         @packages.each do |package|
           xml.Package :ID => package.id do
             xml.Service package.service
+            xml.FirstClassMailType(package.first_class_mail_type) if package.first_class_mail_type
             xml.ZipOrigination package.origin_zip
             xml.ZipDestination package.destination_zip
             xml.Pounds package.pounds
             xml.Ounces package.ounces
             xml.Container package.container
             xml.Size package.size
+            if package.size == 'LARGE'
+              xml.Width package.width
+              xml.Length package.length
+              xml.Height package.height
+            end
             xml.Machinable 'true' # for Service=ALL
           end
         end
