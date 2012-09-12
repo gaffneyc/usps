@@ -29,7 +29,7 @@ describe USPS::Request::ShippingRatesLookup do
   end
 
   def package_xml_from_attributes(attributes)
-    package = USPS::Package.new(attributes)
+    package = USPS::Request::Package::DomesticPackage.new(attributes)
     request = USPS::Request::ShippingRatesLookup.new(package)
     Nokogiri::XML.parse(request.build)
   end

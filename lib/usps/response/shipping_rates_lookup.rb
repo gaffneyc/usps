@@ -5,7 +5,7 @@ module USPS::Response
     def initialize(xml)
       @packages = []
       xml.search('Package').each do |package_node|
-        @packages << USPS::PackageResponse.new do |package_response|
+        @packages << Package::DomesticPackage.new do |package_response|
           package_response.postages        = package_node.search('Postage').map { |postage| parse_postage(postage) }
           package_response.id              = package_node.attr('ID')
           package_response.pounds          = package_node.search('Pounds').text
@@ -21,7 +21,7 @@ module USPS::Response
     private
 
     def parse_postage(node)
-      USPS::Postage.new.tap do |postage|
+      Package::DomesticPackage::Postage.new.tap do |postage|
         postage.class_id     = node.attr('CLASSID')
         postage.mail_service = node.search('MailService').text
         postage.rate         = node.search('Rate').text

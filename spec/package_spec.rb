@@ -1,6 +1,8 @@
 require 'spec_helper'
 
-describe USPS::Package do
+describe USPS::Request::Package::DomesticPackage do
+
+  Package = USPS::Request::Package::DomesticPackage
 
   REQUIRED_PROPERTIES = {
     :id              => 3,
@@ -15,12 +17,12 @@ describe USPS::Package do
 
   it "should be valid when all required properties are specified" do
     expect {
-      package = USPS::Package.new(REQUIRED_PROPERTIES)
+      package = Package.new(REQUIRED_PROPERTIES)
     }.to_not raise_exception
   end
 
   it "properties can be set in an initialization block" do
-    package = USPS::Package.new(REQUIRED_PROPERTIES) do |p|
+    package = Package.new(REQUIRED_PROPERTIES) do |p|
       p.size = "REGULAR"
     end
     package.size.should == "REGULAR"
@@ -29,9 +31,8 @@ describe USPS::Package do
   REQUIRED_PROPERTIES.keys.each do |prop|
     it "requires #{prop}" do
       expect {
-        package = USPS::Package.new(required_properties.dup.delete prop)
+        package = Package.new(required_properties.dup.delete prop)
       }.to raise_exception
     end
   end
-
 end
