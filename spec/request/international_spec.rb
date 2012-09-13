@@ -5,14 +5,14 @@ module USPS::Request
     USPS.username = '414REENH3307'
     it "uses the RateV4 API settings" do
       package = Package::InternationalPackage.new(
-        :country => "Canada", :id => 3, :mail_type => 'Package', :pounds => 20, :ounces => 5, :container => 'RECTANGULAR', :size => 'LARGE',
-        :width => 10, :height => 12, :length => 13
+        :country => "Romania", :id => 3, :mail_type => 'ALL', :pounds => 7, :ounces => 0, :container => 'RECTANGULAR', :size => 'LARGE',
+        :width => 12, :height => 13, :length => 12
       )
       lookup = InternationalShippingRatesLookup.new(package)
       response = lookup.send!
       response.packages.each do |package|
         package.services.each do |service|
-          puts "#{service.rate} - #{service.description}"
+          puts "#{service.id} - #{service.rate} - #{service.description}"
         end
       end
     end

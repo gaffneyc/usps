@@ -17,6 +17,7 @@ module USPS::Request
 
     def build
       super do |xml|
+        xml.Revision 2
         @packages.each do |package|
           xml.Package :ID => package.id do
             xml.Pounds package.pounds
@@ -27,12 +28,10 @@ module USPS::Request
             xml.Country package.country
             xml.Container package.container
             xml.Size package.size
-            if package.size == 'LARGE'
-              xml.Width package.width
-              xml.Length package.length
-              xml.Height package.height
-              xml.Girth 0
-            end
+            xml.Width package.width
+            xml.Length package.length
+            xml.Height package.height
+            xml.Girth nil
             xml.CommercialFlag 'N'
           end
         end
