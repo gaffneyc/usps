@@ -15,12 +15,12 @@ module USPS::Request::Package
 
       if fields[:size] == 'LARGE'
         [:container, :width, :length, :height].each do |field|
-          error "#{field} is required when Size=LARGE" unless fields[field]
+          error "#{field} is required when Size=LARGE" unless send(field)
         end
       end
 
       @@required.each do |field|
-        error "#{field} is required" unless fields[field]
+        error "#{field} is required" unless send(field)
       end
     end
 
