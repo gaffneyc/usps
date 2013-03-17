@@ -4,7 +4,7 @@ module USPS
   class Client
     include HTTParty
     format :xml
-    debug_output
+    #debug_output
 
     def request(request, &block)
       server = server(request)
