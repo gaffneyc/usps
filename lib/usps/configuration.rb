@@ -6,7 +6,7 @@ module USPS
   #            (only specific requests are supported).
   class Configuration < Struct.new(:username, :timeout, :testing)
     def initialize
-      self.timeout  = 5000
+      self.timeout  = 5
       self.testing  = false
       self.username = ENV['USPS_USER']
     end
