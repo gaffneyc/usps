@@ -14,10 +14,10 @@ describe USPS::Response::AddressStandardization do
 
     standard = response.get(address)
 
-    standard.address.should == '6406 IVY LN'
-    standard.city.should == 'GREENBELT'
-    standard.state.should == 'MD'
-    standard.zip.should == '20770-1441'
+    expect(standard.address).to eq('6406 IVY LN')
+    expect(standard.city).to eq('GREENBELT')
+    expect(standard.state).to eq('MD')
+    expect(standard.zip).to eq('20770-1441')
   end
 
   it "should handle test request 2" do
@@ -34,10 +34,10 @@ describe USPS::Response::AddressStandardization do
 
     standard = response.get(address)
 
-    standard.address.should == '8 WILDWOOD DR'
-    standard.city.should == 'OLD LYME'
-    standard.state.should == 'CT'
-    standard.zip.should == '06371-1844'
+    expect(standard.address).to eq('8 WILDWOOD DR')
+    expect(standard.city).to eq('OLD LYME')
+    expect(standard.state).to eq('CT')
+    expect(standard.zip).to eq('06371-1844')
   end
 
   it "should propogate name to the result address as it is not returned from api" do
@@ -49,6 +49,6 @@ describe USPS::Response::AddressStandardization do
       address, load_xml('address_standardization_2.xml')
     )
 
-    response.get(address).name.should == 'Carl Sagan'
+    expect(response.get(address).name).to eq('Carl Sagan')
   end
 end

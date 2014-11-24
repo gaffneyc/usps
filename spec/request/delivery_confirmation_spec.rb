@@ -3,9 +3,9 @@ require 'spec_helper'
 describe USPS::Request::DeliveryConfirmation do
   it 'should be using the proper USPS api settings' do
     USPS::Request::DeliveryConfirmation.tap do |klass|
-      klass.secure.should be_true
-      klass.api.should == 'DeliveryConfirmationV3'
-      klass.tag.should == 'DeliveryConfirmationV3.0Request'
+      expect(klass.secure).to be_truthy
+      expect(klass.api).to eq('DeliveryConfirmationV3')
+      expect(klass.tag).to eq('DeliveryConfirmationV3.0Request')
     end
   end
 
@@ -29,29 +29,29 @@ describe USPS::Request::DeliveryConfirmation do
     request = USPS::Request::DeliveryConfirmation.new(to, from, 2).build
 
     xml = Nokogiri::XML.parse(request)
-    xml.search('Option').text.should == '1'
-    xml.search('ImageParameters').text.should == ''
+    expect(xml.search('Option').text).to eq('1')
+    expect(xml.search('ImageParameters').text).to eq('')
 
-    xml.search('FromName').text.should == 'John Smith'
-    xml.search('FromFirm').text.should == ''
-    xml.search('FromAddress1').text.should == ''
-    xml.search('FromAddress2').text.should == "475 L'Enfant Plaza, SW"
-    xml.search('FromCity').text.should == 'Washington'
-    xml.search('FromState').text.should == 'DC'
-    xml.search('FromZip5').text.should == '20260'
-    xml.search('FromZip4').text.should == ''
+    expect(xml.search('FromName').text).to eq('John Smith')
+    expect(xml.search('FromFirm').text).to eq('')
+    expect(xml.search('FromAddress1').text).to eq('')
+    expect(xml.search('FromAddress2').text).to eq("475 L'Enfant Plaza, SW")
+    expect(xml.search('FromCity').text).to eq('Washington')
+    expect(xml.search('FromState').text).to eq('DC')
+    expect(xml.search('FromZip5').text).to eq('20260')
+    expect(xml.search('FromZip4').text).to eq('')
 
-    xml.search('ToName').text.should == 'Joe Customer'
-    xml.search('ToFirm').text.should == ''
-    xml.search('ToAddress1').text.should == 'STE 201'
-    xml.search('ToAddress2').text.should == '6060 PRIMACY PKWY'
-    xml.search('ToCity').text.should == 'MEMPHIS'
-    xml.search('ToState').text.should == 'TN'
-    xml.search('ToZip5').text.should == ''
-    xml.search('ToZip4').text.should == ''
+    expect(xml.search('ToName').text).to eq('Joe Customer')
+    expect(xml.search('ToFirm').text).to eq('')
+    expect(xml.search('ToAddress1').text).to eq('STE 201')
+    expect(xml.search('ToAddress2').text).to eq('6060 PRIMACY PKWY')
+    expect(xml.search('ToCity').text).to eq('MEMPHIS')
+    expect(xml.search('ToState').text).to eq('TN')
+    expect(xml.search('ToZip5').text).to eq('')
+    expect(xml.search('ToZip4').text).to eq('')
 
-    xml.search('WeightInOunces').text.should == '2'
-    xml.search('ImageType').text.should == 'TIF'
-    xml.search('ServiceType').text.should == 'Priority'
+    expect(xml.search('WeightInOunces').text).to eq('2')
+    expect(xml.search('ImageType').text).to eq('TIF')
+    expect(xml.search('ServiceType').text).to eq('Priority')
   end
 end

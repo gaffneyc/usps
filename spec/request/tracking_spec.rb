@@ -4,9 +4,9 @@ describe USPS::Request::TrackingLookup do
 
   it 'should be using the proper USPS api settings' do
     USPS::Request::TrackingLookup.tap do |klass|
-      klass.secure.should be_false
-      klass.api.should == 'TrackV2'
-      klass.tag.should == 'TrackRequest'
+      expect(klass.secure).to be_falsey
+      expect(klass.api).to eq('TrackV2')
+      expect(klass.tag).to eq('TrackRequest')
     end
   end
 
@@ -14,8 +14,8 @@ describe USPS::Request::TrackingLookup do
     request = USPS::Request::TrackingLookup.new("EJ958083578US").build
 
     xml = Nokogiri::XML.parse(request)
-    xml.search('TrackID').text.should == ''
-    xml.search('TrackID').attr("ID").text.should == "EJ958083578US"
+    expect(xml.search('TrackID').text).to eq('')
+    expect(xml.search('TrackID').attr("ID").text).to eq("EJ958083578US")
   end
 
 end

@@ -7,13 +7,13 @@ describe USPS::Configuration do
   end
 
   it "should have some sensible defaults" do
-    @config.username.should be_nil
-    @config.timeout.should == 5000
-    @config.testing.should be_false
+    expect(@config.username).to be_nil
+    expect(@config.timeout).to eq(5000)
+    expect(@config.testing).to be_falsey
   end
 
   it "should grab the username from the environment if available" do
     ENV['USPS_USER'] = 'malcom77'
-    USPS::Configuration.new.username.should == 'malcom77'
+    expect(USPS::Configuration.new.username).to eq('malcom77')
   end
 end

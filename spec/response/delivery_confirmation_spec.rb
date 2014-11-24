@@ -6,18 +6,18 @@ describe USPS::Response::DeliveryConfirmation do
       load_xml('delivery_confirmation_1.xml')
     )
 
-    response.confirmation.should == '420381199101805213907126809651'
-    response.label.should == 'LABEL DATA GOES HERE'
-    response.postnet.should == '38119571851'
+    expect(response.confirmation).to eq('420381199101805213907126809651')
+    expect(response.label).to eq('LABEL DATA GOES HERE')
+    expect(response.postnet).to eq('38119571851')
 
     # Check the address
     addy = response.address
-    addy.name.should == 'Joe Customer'
-    addy.address.should == '6060 PRIMACY PKWY'
-    addy.address2.should == 'STE 201'
-    addy.city.should == 'Memphis'
-    addy.state.should == 'TN'
-    addy.zip.should == '38119-5718'
+    expect(addy.name).to eq('Joe Customer')
+    expect(addy.address).to eq('6060 PRIMACY PKWY')
+    expect(addy.address2).to eq('STE 201')
+    expect(addy.city).to eq('Memphis')
+    expect(addy.state).to eq('TN')
+    expect(addy.zip).to eq('38119-5718')
   end
 
   # TODO: Test is still missing custom fields
@@ -26,18 +26,18 @@ describe USPS::Response::DeliveryConfirmation do
       load_xml('delivery_confirmation_2.xml')
     )
 
-    response.confirmation.should == '420381199101805213907116323891'
-    response.label.should == 'LABEL DATA GOES HERE'
-    response.postnet.should == '38119571851'
+    expect(response.confirmation).to eq('420381199101805213907116323891')
+    expect(response.label).to eq('LABEL DATA GOES HERE')
+    expect(response.postnet).to eq('38119571851')
 
     # Check the address
     addy = response.address
-    addy.company.should == 'U.S. Postal Service NCSC'
-    addy.name.should == 'Joe Customer'
-    addy.address.should == '6060 PRIMACY PKWY'
-    addy.address2.should == 'STE 201'
-    addy.city.should == 'MEMPHIS'
-    addy.state.should == 'TN'
-    addy.zip.should == '38119-5718'
+    expect(addy.company).to eq('U.S. Postal Service NCSC')
+    expect(addy.name).to eq('Joe Customer')
+    expect(addy.address).to eq('6060 PRIMACY PKWY')
+    expect(addy.address2).to eq('STE 201')
+    expect(addy.city).to eq('MEMPHIS')
+    expect(addy.state).to eq('TN')
+    expect(addy.zip).to eq('38119-5718')
   end
 end

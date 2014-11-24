@@ -3,16 +3,16 @@ require 'spec_helper'
 describe USPS::Request::ZipCodeLookup do
   it "should be using the proper USPS api settings" do
     USPS::Request::ZipCodeLookup.tap do |klass|
-      klass.secure.should be_false
-      klass.api.should == 'ZipCodeLookup'
-      klass.tag.should == 'ZipCodeLookupRequest'
+      expect(klass.secure).to be_falsey
+      expect(klass.api).to eq('ZipCodeLookup')
+      expect(klass.tag).to eq('ZipCodeLookupRequest')
     end
   end
 
   it "should not allow more than 5 addresses" do
-    Proc.new do
+    expect do
       USPS::Request::AddressStandardization.new([USPS::Address.new] * 6)
-    end.should raise_exception(ArgumentError)
+    end.to raise_exception(ArgumentError)
   end
 
   it "should be able to build a proper request" do
@@ -30,13 +30,13 @@ describe USPS::Request::ZipCodeLookup do
     xml = Nokogiri::XML.parse(request.build)
 
     xml.search('Address').first.tap do |node|
-      node.attr('ID').should == '0'
+      expect(node.attr('ID')).to eq('0')
 
-      node.search('FirmName').text.should == 'Widget Tel Co.'
-      node.search('Address1').text.should == 'Suite 2000'
-      node.search('Address2').text.should == '999 Serious Business Av'
-      node.search('City').text.should == 'Awesome Town'
-      node.search('State').text.should == 'FL'
+      expect(node.search('FirmName').text).to eq('Widget Tel Co.')
+      expect(node.search('Address1').text).to eq('Suite 2000')
+      expect(node.search('Address2').text).to eq('999 Serious Business Av')
+      expect(node.search('City').text).to eq('Awesome Town')
+      expect(node.search('State').text).to eq('FL')
     end
   end
 end

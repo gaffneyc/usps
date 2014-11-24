@@ -10,7 +10,7 @@ describe USPS::Request::Base do
 
     xml = Nokogiri::XML.parse(sub.build)
 
-    xml.root.name.should == 'TestingTag'
-    xml.root.attr('USERID').should == USPS.username
+    expect(xml.root.name).to eq('TestingTag')
+    expect(xml.root.attr('USERID')).to eq(USPS.username)
   end
 end
