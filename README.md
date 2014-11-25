@@ -63,6 +63,11 @@ If any of the tests fail, you don't have access to that API and may need to work
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
+== Testing
+
+```
+$ rspec
+```
 
 == Copyright
 

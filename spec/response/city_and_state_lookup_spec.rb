@@ -7,9 +7,9 @@ describe USPS::Response::CityAndStateLookup do
     )
 
     response.get(90210).tap do |r|
-      r.zip.should   == 90210
-      r.city.should  == 'BEVERLY HILLS'
-      r.state.should == 'CA'
+      expect(r.zip).to   eq(90210)
+      expect(r.city).to  eq('BEVERLY HILLS')
+      expect(r.state).to eq('CA')
     end
   end
 
@@ -19,9 +19,9 @@ describe USPS::Response::CityAndStateLookup do
     )
 
     response.get(20770).tap do |r|
-      r.zip.should   == 20770
-      r.city.should  == 'GREENBELT'
-      r.state.should == 'MD'
+      expect(r.zip).to   eq(20770)
+      expect(r.city).to  eq('GREENBELT')
+      expect(r.state).to eq('MD')
     end
   end
 end
