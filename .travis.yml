@@ -10,5 +10,9 @@ before_install:
 
 script:
   - "bundle exec rake"
+  
+before_script:
+  - echo 'America/New_York' | sudo tee /etc/timezone
+  - sudo dpkg-reconfigure --frontend noninteractive tzdata
 
 cache: bundler
