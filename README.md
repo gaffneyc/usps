@@ -1,5 +1,7 @@
 # usps
 
+[![Build Status](https://travis-ci.org/gaffneyc/usps.svg?branch=master)](https://travis-ci.org/gaffneyc/usps)
+
 Ruby API for accessing the USPS WebTools API found here: https://www.usps.com/business/webtools.htm
 
 PDF Guides can be found here: https://www.usps.com/business/webtools-technical-guides.htm
