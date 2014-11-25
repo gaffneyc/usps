@@ -8,7 +8,7 @@ describe USPS::Configuration do
 
   it "should have some sensible defaults" do
     expect(@config.username).to be_nil
-    expect(@config.timeout).to eq(5000)
+    expect(@config.timeout).to eq(5)
     expect(@config.testing).to be_falsey
   end
 
