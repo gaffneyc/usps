@@ -31,7 +31,8 @@ module USPS::Response
         :city => node.search('City').text,
         :state => node.search('State').text,
         :zip5 => node.search('Zip5').text,
-        :zip4 => node.search('Zip4').text
+        :zip4 => node.search('Zip4').text,
+        :return_text => node.search('ReturnText').text,
       )
     end
   end
