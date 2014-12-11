@@ -21,6 +21,19 @@ module USPS::Response
       @addresses[address]
     end
     alias :[] :get
+    
+    def addresses
+      @addresses
+    end
+    
+    def to_h
+      hash = {}
+      @addresses.each_pair do |key, value|
+        hash[key.to_h] = value.to_h
+      end
+      
+      hash
+    end
 
     private
     def parse(node)
