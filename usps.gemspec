@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email        = ["gaffneyc@gmail.com"]
   s.version      = USPS::VERSION
   s.platform     = Gem::Platform::RUBY
-  s.files        = Dir.glob("{lib,spec}/**/*") + %w(Rakefile LICENSE README.rdoc)
+  s.files        = Dir.glob("{lib,spec}/**/*") + %w(Rakefile LICENSE README.md)
 
   s.add_runtime_dependency("builder",  ">= 2.1.2")
   s.add_runtime_dependency("nokogiri", ">= 1.4.1")
