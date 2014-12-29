@@ -79,6 +79,11 @@ If any of the tests fail, you don't have access to that API and may need to work
 $ rspec
 ```
 
+## Further Reading
+
+- [USPS API docs](https://www.usps.com/business/web-tools-apis/welcome.htm)
+- [18F's USPS API Notes](https://github.com/18F/usps-api-notes)
+
 ## Copyright
 
 Copyright (c) 2014 Chris Gaffney. See LICENSE for details.
