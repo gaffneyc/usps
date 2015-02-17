@@ -1,11 +1,11 @@
 class USPS::Test
   module AddressVerification
     def test_address_standardization_1
-      address = USPS::Address.new(
+      address = USPS::Address.new({
         :address => '6406 Ivy Lane',
         :city => 'Greenbelt',
         :state => 'MD'
-      ).standardize!
+      }).standardize!
       
       assert_equal '6406 IVY LN', address.address
       assert_equal 'GREENBELT', address.city
@@ -15,11 +15,11 @@ class USPS::Test
     end
 
     def test_address_standardization_2
-      address = USPS::Address.new(
+      address = USPS::Address.new({
         :address => '8 Wildwood Drive',
         :city => 'Old Lyme',
         :state => 'CT'
-      ).standardize!
+      }).standardize!
 
       assert_equal '8 WILDWOOD DR', address.address
       assert_equal 'OLD LYME', address.city
