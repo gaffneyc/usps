@@ -4,17 +4,21 @@ module USPS
   class Client
     def request(request, &block)
       server = server(request)
-
       # Make the API request to the USPS servers. Used to support POST, now it's
       # just GET request *grumble*.
+      time_out = USPS.config.timeout 
+      #typhoeus uses milisecs with ree and secs with jruby
+      if RUBY_VERSION < '1.9'
+        time_out *= 1000
+      end
       response = Typhoeus::Request.get(server, {
-        :timeout => USPS.config.timeout,
+        :timeout => time_out,        
         :params => {
           "API" => request.api,
           "XML" => request.build
         }
       })
-
+      
       # Parse the request
       xml = Nokogiri::XML.parse(response.body)
 
