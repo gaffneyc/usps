@@ -1,4 +1,4 @@
-require 'typhoeus'
+require 'net/https'
 
 module USPS
   class Client
@@ -7,16 +7,16 @@ module USPS
 
       # Make the API request to the USPS servers. Used to support POST, now it's
       # just GET request *grumble*.
-      response = Typhoeus::Request.get(server, {
-        :timeout => USPS.config.timeout,
-        :params => {
-          "API" => request.api,
-          "XML" => request.build
-        }
-      })
+      uri = URI(server)
+      uri.query = URI.encode_www_form(
+        "API" => request.api,
+        "XML" => request.build
+      )
+
+      response = get(uri)
 
       # Parse the request
-      xml = Nokogiri::XML.parse(response.body)
+      xml = Nokogiri::XML.parse(response)
 
       # Process and raise errors
       if((error = xml.search('Error')).any?)
@@ -38,6 +38,14 @@ module USPS
     end
 
     private
+
+    def get(uri)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = uri.scheme == 'https'
+      http.read_timeout = USPS.config.timeout
+      http.request_get(uri.request_uri).body
+    end
+
     def server(request)
       dll = testing? ? "ShippingAPITest.dll" : "ShippingAPI.dll"
 
