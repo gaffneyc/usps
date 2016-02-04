@@ -41,8 +41,10 @@ module USPS
 
     def get(uri)
       http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = uri.scheme == 'https'
+      http.open_timeout = USPS.config.timeout
       http.read_timeout = USPS.config.timeout
+      http.ssl_timeout = USPS.config.timeout
+      http.use_ssl = uri.scheme == 'https'
       http.request_get(uri.request_uri).body
     end
 
