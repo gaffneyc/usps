@@ -7,6 +7,7 @@ module USPS
   #     USPS::ValidationError
   #       USPS::InvalidCityError
   #       USPS::InvalidStateError
+  #       USPS::InvalidZipError
   #       USPS::AddressNotFoundError
   #       USPS::MultipleAddressError
   #       USPS::InvalidImageTypeError
@@ -27,6 +28,7 @@ module USPS
         when '-2147219400'; InvalidCityError
         when '-2147219401'; AddressNotFoundError
         when '-2147219402'; InvalidStateError
+        when '-2147219399'; InvalidZipError
         when '-2147219403'; MultipleAddressError
         when '-2147218900'; InvalidImageTypeError
         else              ; Error
@@ -40,6 +42,7 @@ module USPS
   class ValidationError < Error; end
   class InvalidCityError < ValidationError; end
   class InvalidStateError < ValidationError; end
+  class InvalidZipError < ValidationError; end
   class AddressNotFoundError < ValidationError; end
   class MultipleAddressError < ValidationError; end
   class InvalidImageTypeError < ValidationError; end
