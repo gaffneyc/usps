@@ -1,0 +1,31 @@
+<RateV4Response>
+  <Package ID="42">
+    <ZipOrigination>20171</ZipOrigination>
+    <ZipDestination>08540</ZipDestination>
+    <Pounds>2</Pounds>
+    <Ounces>0</Ounces>
+    <Size>REGULAR</Size>
+    <Machinable>TRUE</Machinable>
+    <Zone>2</Zone>
+    <Postage CLASSID="3">
+      <MailService>Express Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService>
+      <Rate>17.40</Rate>
+    </Postage>
+    <Postage CLASSID="2">
+      <MailService>Express Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt; Hold For Pickup</MailService>
+      <Rate>17.40</Rate>
+    </Postage>
+    <Postage CLASSID="23">
+      <MailService>Express Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt; Sunday/Holiday Delivery</MailService>
+      <Rate>29.90</Rate>
+    </Postage>
+    <Postage CLASSID="55">
+      <MailService>Express Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt; Flat Rate Boxes</MailService>
+      <Rate>39.95</Rate>
+    </Postage>
+    <Postage CLASSID="56">
+      <MailService>Express Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt; Flat Rate Boxes Hold For Pickup</MailService>
+      <Rate>39.95</Rate>
+    </Postage>
+  </Package>
+</RateV4Response>
