@@ -44,8 +44,6 @@ module USPS
       case
       when request.secure?
         "https://secure.shippingapis.com/#{dll}"
-      when testing?
-        "http://testing.shippingapis.com/#{dll}"
       else
         "http://production.shippingapis.com/#{dll}"
       end

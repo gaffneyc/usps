@@ -11,7 +11,7 @@ class USPS::Test
       assert_equal 'GREENBELT', address.city
       assert_equal 'MD', address.state
       assert_equal '20770', address.zip5
-      assert_equal '1440', address.zip4
+      assert_equal '1435', address.zip4
     end
 
     def test_address_standardization_2
