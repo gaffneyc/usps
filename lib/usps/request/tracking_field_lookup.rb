@@ -8,7 +8,6 @@ module USPS::Request
     config(
       :api => 'TrackV2',
       :tag => 'TrackFieldRequest',
-      :secure => false,
       :response => USPS::Response::TrackingFieldLookup
     )
 

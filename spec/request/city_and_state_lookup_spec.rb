@@ -3,7 +3,6 @@ require 'spec_helper'
 describe USPS::Request::CityAndStateLookup do
   it "should be using the proper USPS api settings" do
     USPS::Request::CityAndStateLookup.tap do |klass|
-      expect(klass.secure).to be_falsey
       expect(klass.api).to eq('CityStateLookup')
       expect(klass.tag).to eq('CityStateLookupRequest')
     end

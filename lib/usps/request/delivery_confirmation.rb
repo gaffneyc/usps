@@ -3,7 +3,6 @@ module USPS::Request
     config(
       :api => 'DeliveryConfirmationV3',
       :tag => 'DeliveryConfirmationV3.0Request',
-      :secure => true,
       :response => USPS::Response::DeliveryConfirmation
     )
 

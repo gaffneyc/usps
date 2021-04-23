@@ -4,7 +4,6 @@ module USPS::Request
     config(
       :api => 'CityStateLookup',
       :tag => 'CityStateLookupRequest',
-      :secure => false,
       :response => USPS::Response::CityAndStateLookup
     )
 

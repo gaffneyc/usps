@@ -3,7 +3,6 @@ require 'spec_helper'
 describe USPS::Request::DeliveryConfirmation do
   it 'should be using the proper USPS api settings' do
     USPS::Request::DeliveryConfirmation.tap do |klass|
-      expect(klass.secure).to be_truthy
       expect(klass.api).to eq('DeliveryConfirmationV3')
       expect(klass.tag).to eq('DeliveryConfirmationV3.0Request')
     end
