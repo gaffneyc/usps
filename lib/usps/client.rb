@@ -15,6 +15,10 @@ module USPS
         }
       })
 
+      if response.timed_out?
+        raise TimeoutError
+      end
+
       # Parse the request
       xml = Nokogiri::XML.parse(response.body)
 
