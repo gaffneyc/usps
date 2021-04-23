@@ -35,7 +35,7 @@ describe USPS::TrackDetail do
       :event_time => '9:24 pm',
       :event_date => 'March 28, 2001',
     )
-    expect(track_detail.date).to eq(Time.parse('2001-03-28 21:24:00 -0500'))
+    expect(track_detail.date).to eq(Time.parse("2001-03-28 21:24:00"))
   end
   
   it "should handle blank dates" do
