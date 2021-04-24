@@ -4,13 +4,16 @@ rvm:
   - "1.9.3"
   - "2.0"
   - "2.1"
+  - "2.6"
+  - "2.7"
+  - "3.0"
 
 before_install:
   - "gem install bundler -v 1.17.3"
 
 script:
   - "bundle exec rake"
-  
+
 before_script:
   - echo 'America/New_York' | sudo tee /etc/timezone
   - sudo dpkg-reconfigure --frontend noninteractive tzdata
