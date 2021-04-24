@@ -3,6 +3,7 @@ module USPS
   #
   # StandardError
   #   USPS::Error
+  #     USPS::TimeoutError
   #     USPS::AuthorizationError
   #     USPS::ValidationError
   #       USPS::InvalidCityError
@@ -14,7 +15,7 @@ module USPS
   class Error < StandardError
     attr_reader :number, :source
 
-    def initialize(message, number, source)
+    def initialize(message = nil, number = nil, source = nil)
       super(message)
 
       @number = number
@@ -37,6 +38,7 @@ module USPS
     end
   end
 
+  class TimeoutError < Error; end
   class AuthorizationError < Error; end
 
   class ValidationError < Error; end
