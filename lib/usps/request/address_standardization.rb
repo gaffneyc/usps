@@ -4,7 +4,6 @@ module USPS::Request
     config(
       :api => 'Verify',
       :tag => 'AddressValidateRequest',
-      :secure => false,
       :response => USPS::Response::AddressStandardization
     )
 

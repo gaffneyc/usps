@@ -3,7 +3,6 @@ require 'spec_helper'
 describe USPS::Request::AddressStandardization do
   it "should be using the proper USPS api settings" do
     USPS::Request::AddressStandardization.tap do |klass|
-      expect(klass.secure).to be_falsey
       expect(klass.api).to eq('Verify')
       expect(klass.tag).to eq('AddressValidateRequest')
     end
@@ -14,7 +13,7 @@ describe USPS::Request::AddressStandardization do
       USPS::Request::AddressStandardization.new([USPS::Address.new] * 6)
     end.to raise_exception(ArgumentError)
   end
-    
+
   it "should be able to build a proper request" do
     request = USPS::Request::AddressStandardization.new(
       USPS::Address.new(

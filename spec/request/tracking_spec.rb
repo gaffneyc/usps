@@ -4,7 +4,6 @@ describe USPS::Request::TrackingLookup do
 
   it 'should be using the proper USPS api settings' do
     USPS::Request::TrackingLookup.tap do |klass|
-      expect(klass.secure).to be_falsey
       expect(klass.api).to eq('TrackV2')
       expect(klass.tag).to eq('TrackRequest')
     end

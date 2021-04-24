@@ -3,7 +3,6 @@ require 'spec_helper'
 describe USPS::Request::ZipCodeLookup do
   it "should be using the proper USPS api settings" do
     USPS::Request::ZipCodeLookup.tap do |klass|
-      expect(klass.secure).to be_falsey
       expect(klass.api).to eq('ZipCodeLookup')
       expect(klass.tag).to eq('ZipCodeLookupRequest')
     end

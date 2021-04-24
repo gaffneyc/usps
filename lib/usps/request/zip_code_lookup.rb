@@ -7,7 +7,6 @@ module USPS::Request
     config(
       :api => 'ZipCodeLookup',
       :tag => 'ZipCodeLookupRequest',
-      :secure => false,
       :response => USPS::Response::AddressStandardization
     )
 
