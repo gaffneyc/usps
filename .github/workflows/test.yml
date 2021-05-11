@@ -1,0 +1,38 @@
+name: Run tests
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-16.04
+    timeout-minutes: 15
+    env:
+      BUNDLE_JOBS: 4
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: vendor/bundle
+    strategy:
+      matrix:
+        ruby:
+          - "2.1"
+          - "2.6"
+          - "2.7"
+          - "3.0"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Update .ruby-version with matrix value
+        run: echo "${{ matrix.ruby }}" >| .ruby-version
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      # Test
+      - name: Run tests
+        run: bundle exec rake
+
