@@ -3,8 +3,9 @@ module USPS
   #
   # StandardError
   #   USPS::Error
-  #     USPS::TimeoutError
-  #     USPS::AuthorizationError
+  #     USPS::ConnectionError
+  #       USPS::TimeoutError
+  #       USPS::AuthorizationError
   #     USPS::ValidationError
   #       USPS::InvalidCityError
   #       USPS::InvalidStateError
@@ -38,8 +39,9 @@ module USPS
     end
   end
 
-  class TimeoutError < Error; end
-  class AuthorizationError < Error; end
+  class ConnectionError < Error; end
+  class TimeoutError < ConnectionError; end
+  class AuthorizationError < ConnectionError; end
 
   class ValidationError < Error; end
   class InvalidCityError < ValidationError; end

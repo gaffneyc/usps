@@ -19,6 +19,18 @@ module USPS
         raise TimeoutError
       end
 
+      # If there are services that are down or there is no network connection available then
+      # the request may not time out but instead return a blank body and a response_code of 0.
+      #
+      # The Typhoeus return_code might be :couldnt_connect or :couldnt_resolve_host rather than
+      # :operation_timedout.
+      #
+      # In any case a response_code of 0 is exceptional so we raise an exception.
+      #
+      if response.response_code == 0
+        raise ConnectionError
+      end
+
       # Parse the request
       xml = Nokogiri::XML.parse(response.body)
 
