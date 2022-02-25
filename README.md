@@ -42,6 +42,29 @@ The library assumes that either `ENV['USPS_USER']` is set, or that you set `USPS
 
 See the individual USPS::Request classes for details on how to use them.
 
+### Address Validation
+
+```rb
+require 'usps'
+
+USPS.config.username = 'YOUR USERNAME'
+
+address = USPS::Address.new(address1: '1 Times Square', city: 'New York', state: 'NY')
+req = USPS::Request::AddressStandardization.new(address)
+response = req.send!
+response.get(address)
+#<#<Class:0x00007fc6f3c4b870>:USPS::Address:0x00495ef8
+  address1 = "1 TIMES SQ",
+  address2 = "",
+  city = "NEW YORK",
+  company = "",
+  name = nil,
+  return_text = "Default address: The address you entered was found but more information is needed (such as an apartment, suite, or box number) to match to a specific address.",
+  state = "NY",
+  zip4 = "6560",
+  zip5 = "10036"
+```
+
 ## USPS API Certification
 
 Part of the process of setting up an account with the USPS API is to run certain tests against the USPS API.
